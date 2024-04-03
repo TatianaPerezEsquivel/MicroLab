@@ -1,0 +1,68 @@
+﻿@using MicroLab.BussinessEntities
+@model IEnumerable<MicroLab.BussinessEntities.Waterfall>
+
+@{
+    ViewData["Title"] = "Index";
+    var types = ViewBag.Types as List<ExamType>;
+}
+
+<div class="col-sm-3">
+    <label class="form-label">Nombre</label>
+    <select class="form-select form-select-sm" id="Name">
+        @foreach(var item in types)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    </select>
+</div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            obtenerNombres();
+
+        })
+
+        function obtenerNombres() {
+
+            $.ajax({
+                url: "@Url.Action("ObtenerCategorias", "Waterfall")",
+                type: "GET",
+                dataType: "json",
+                data: {
+                    Obtener: "Nombre",
+
+                },
+                success: function (response) {
+
+                    // console.log(response)
+
+                    $("#Name").append(
+                        $("<option>").attr({ "value": "" }).text("Seleccionar")
+                    )
+
+                    $.each(response, function (index, elemento) {
+
+                        $("#Name").append(
+                            $("<option>").attr({ "value": elemento.name.text(elemento.name)
+                                       )
+
+                                   })
+
+                    $("#Name").select2({ placeholder: "Seleccionar", width: "100%" });
+
+                }
+            })
+
+        }
+        $("#Name).on("change", function () {
+                    obtenerNombres();
+                })
+    </script>
+}
+

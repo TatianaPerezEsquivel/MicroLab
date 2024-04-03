@@ -1,0 +1,95 @@
+﻿@model MicroLab.BussinessEntities.Patient
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar Paciente</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="lastname" class="control-label"></label>
+                <input asp-for="lastname" class="form-control" />
+                <span asp-validation-for="lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="birthDate" class="control-label"></label>
+                <input asp-for="birthDate" class="form-control" />
+                <span asp-validation-for="birthDate" class="text-danger"></span>
+            </div>
+         @*    <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" id="edad" class="form-control" readonly /> <!-- Se ha agregado el campo para mostrar la edad -->
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="CellPhone" class="control-label"></label>
+                <input asp-for="CellPhone" class="form-control" />
+                <span asp-validation-for="CellPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="address" class="control-label"></label>
+                <input asp-for="address" class="form-control" />
+                <span asp-validation-for="address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="gender" class="control-label"></label>
+                <input asp-for="gender" class="form-control" />
+                <span asp-validation-for="gender" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+<div>
+    <a asp-action="Index">Regresar a la lista</a>
+</div>
+  @*   @section Scripts {
+        <script>
+            // Obtener la Referencia al elemento de entrada de fecha y de edad
+            var fechaInput = document.querySelector('input[name="birthDate"]');
+            var edadInput = document.getElementById('edad'); // Corregido el id del input de edad
+
+            // Agrega un event listener para el cambio de la fecha de nacimiento
+            fechaInput.addEventListener('change', function () {
+                // Obtener la fecha de nacimiento del input
+                var fechaNacimiento = new Date(fechaInput.value);
+
+                // Obtener la fecha actual
+                var fechaActual = new Date();
+
+                // Calcular la edad restando el año de nacimiento del año actual
+                var edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+
+                // Ajusta la edad si la fecha de nacimiento aun no ha ocurrido este año
+                if (fechaNacimiento.getMonth() > fechaActual.getMonth() || (fechaNacimiento.getMonth() === fechaActual.getMonth() && fechaNacimiento.getDate() > fechaActual.getDate())) {
+                    edad--;
+                }
+
+                // Actualizar el valor del campo de edad
+                edadInput.value = edad;
+            });
+        </script>
+    } *@
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
