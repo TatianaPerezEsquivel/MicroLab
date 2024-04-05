@@ -5,11 +5,9 @@
     var cont = 0;
 }
 
-<h1>Report</h1>
+<h1>Reporte Semanal</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -22,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                charretorrelativo
+          Total de Examenes
             </th>
             <th></th>
         </tr>
@@ -40,6 +38,7 @@
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
+                    @cont
                 </td>
 
             </tr>
@@ -47,9 +46,9 @@
     </tbody>
 
 </table>
-<h2>
+@* <h2>
     @cont
-</h2>
+</h2> *@
 
 
 

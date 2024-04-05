@@ -10,6 +10,8 @@ namespace MicroLab.DataAccessLogic
 {
     public class PatientDAL
     {
+
+
         public static async Task<int> CreateAsync(Patient patient)
         {
             int result = 0;
@@ -31,6 +33,7 @@ namespace MicroLab.DataAccessLogic
                     patientDB.Name = patient.Name;
                     patientDB.lastname = patient.lastname;
                     patientDB.birthDate = patient.birthDate;
+                    patientDB.Age = patient.Age;
                     patientDB.CellPhone = patient.CellPhone;
                     patientDB.address = patient.address;
                     patientDB.gender = patient.gender;

@@ -15,10 +15,11 @@ namespace MicroLab.GraphicUserInterface.Controllers
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class PatientController : Controller
     {
-        string ContextDB = "Data source = localhost; Initial catalog = Laboratorio; Integrated Security = true; Encrypt = false; TrustServerCertificate = true"; // Reemplaza con tu cadena de conex
+      
         PatientBL patientBL = new PatientBL();
         // accion que muestra el listado de categorias
-        // GET: PatientController
+      
+
         public async Task<ActionResult> Index(Patient patient = null)
         {
             if (patient == null)
@@ -32,34 +33,7 @@ namespace MicroLab.GraphicUserInterface.Controllers
 
             return View(patients);
         }
-        public ActionResult Obtener()
-        {
-            List<Categorias> categorias = new List<Categorias>();
-
-            // Llamar al primer procedimiento almacenado para obtener las categorías
-            using (SqlConnection connection = new SqlConnection(ContextDB))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand("ObtenerCategorias", connection);
-                command.CommandType = CommandType.StoredProcedure;
-
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Categorias categoria = new Categorias
-                    {
-                        IdCategoria = reader.GetInt32(0),
-                        NombreCategoria = reader.GetString(1)
-                    };
-                    categorias.Add(categoria);
-                }
-                reader.Close();
-            }
-
-            ViewBag.Categorias = new SelectList(categorias, "IdCategoria", "NombreCategoria");
-
-            return View();
-                }
+     
         //accion que  muestra el detalle de un registro
         public async Task<ActionResult> Details(int id)
         {

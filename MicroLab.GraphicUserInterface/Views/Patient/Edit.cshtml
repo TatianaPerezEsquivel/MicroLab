@@ -13,8 +13,6 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <input type="hidden" asp-for="Id" />
-
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -27,14 +25,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="birthDate" class="control-label"></label>
-                <input asp-for="birthDate" class="form-control" />
+                <input asp-for="birthDate" type="date" class="form-control" />
                 <span asp-validation-for="birthDate" class="text-danger"></span>
             </div>
-         @*    <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Age" class="control-label"></label>
                 <input asp-for="Age" id="edad" class="form-control" readonly /> <!-- Se ha agregado el campo para mostrar la edad -->
                 <span asp-validation-for="Age" class="text-danger"></span>
-            </div> *@
+            </div>
             <div class="form-group">
                 <label asp-for="CellPhone" class="control-label"></label>
                 <input asp-for="CellPhone" class="form-control" />
@@ -51,8 +49,9 @@
                 <span asp-validation-for="gender" class="text-danger"></span>
             </div>
 
+
             <div class="form-group">
-                <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+                <input type="submit" value="Guardar cambios" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -61,33 +60,33 @@
 <div>
     <a asp-action="Index">Regresar a la lista</a>
 </div>
-  @*   @section Scripts {
-        <script>
-            // Obtener la Referencia al elemento de entrada de fecha y de edad
-            var fechaInput = document.querySelector('input[name="birthDate"]');
-            var edadInput = document.getElementById('edad'); // Corregido el id del input de edad
+    @section Scripts {
+    <script>
+    // Obtener la Referencia al elemento de entrada de fecha y de edad
+    var fechaInput = document.querySelector('input[name="birthDate"]');
+    var edadInput = document.getElementById('edad'); // Corregido el id del input de edad
 
-            // Agrega un event listener para el cambio de la fecha de nacimiento
-            fechaInput.addEventListener('change', function () {
-                // Obtener la fecha de nacimiento del input
-                var fechaNacimiento = new Date(fechaInput.value);
+    // Agrega un event listener para el cambio de la fecha de nacimiento
+    fechaInput.addEventListener('change', function () {
+    // Obtener la fecha de nacimiento del input
+    var fechaNacimiento = new Date(fechaInput.value);
 
-                // Obtener la fecha actual
-                var fechaActual = new Date();
+    // Obtener la fecha actual
+    var fechaActual = new Date();
 
-                // Calcular la edad restando el año de nacimiento del año actual
-                var edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+    // Calcular la edad restando el año de nacimiento del año actual
+    var edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
 
-                // Ajusta la edad si la fecha de nacimiento aun no ha ocurrido este año
-                if (fechaNacimiento.getMonth() > fechaActual.getMonth() || (fechaNacimiento.getMonth() === fechaActual.getMonth() && fechaNacimiento.getDate() > fechaActual.getDate())) {
-                    edad--;
-                }
+    // Ajusta la edad si la fecha de nacimiento aun no ha ocurrido este año
+    if (fechaNacimiento.getMonth() > fechaActual.getMonth() || (fechaNacimiento.getMonth() === fechaActual.getMonth() && fechaNacimiento.getDate() > fechaActual.getDate())) {
+    edad--;
+    }
 
-                // Actualizar el valor del campo de edad
-                edadInput.value = edad;
-            });
-        </script>
-    } *@
+    // Actualizar el valor del campo de edad
+    edadInput.value = edad;
+    });
+    </script>
+    }
 
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
